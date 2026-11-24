@@ -49,7 +49,11 @@ The baseline uses 32 hidden units without dropout. The updated model increases t
 The notebook displays at least three held-out review texts with their expected labels, model predictions, and confidence scores.
 
 ## Results and Conclusion
-Complete this section after running the notebook. Discuss the held-out results, whether the updated model improved on the baseline, and what the experiment demonstrates about using a small neural network for review sentiment.
+The original model achieved 79.0% held-out test accuracy, 78.1% precision, 89.1% recall, and 0.832 F1. It correctly classified 122 of the 157 test reviews. Its strongest result was identifying positive reviews, with 89.1% recall and 0.83 F1 for the positive class.
+
+The updated model achieved 80.3% held-out test accuracy, 79.6% precision, 89.1% recall, and 0.841 F1. It correctly classified 126 of the 157 test reviews. Compared with the original model, it improved test accuracy by 1.3 percentage points and F1 by 0.009 while maintaining the same positive-class recall.
+
+The 64-unit MLP with 30% dropout outperformed the 32-unit baseline on this test sample. This suggests that the added capacity and regularization were helpful, although the improvement is small and should not be interpreted as proof of general superiority. The experiment demonstrates that a small PyTorch MLP can learn a useful binary sentiment signal from TF-IDF features, but its results remain limited by the small sample and noisy, proxy-based labels.
 
 ## Ethical Considerations
 The sample's labels have different levels of reliability: Steam labels were AI-assigned and Xbox ratings are only proxies for written sentiment. The dataset may underrepresent languages, player communities, and writing styles. A wrong sentiment prediction could mischaracterize a game or its reviewers. Treat model output as a rough summary, not a substitute for reading reviews or a basis for decisions about individual players.
