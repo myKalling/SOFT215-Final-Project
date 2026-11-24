@@ -40,7 +40,14 @@ Restart the notebook kernel and run every cell from top to bottom. The notebook 
 The notebook uses a fixed random seed, 68% training, 12% validation, and 20% test split, stratified by label. TF-IDF is fit on training text only. Both models use mini-batches of 32, 15 epochs, learning rate 0.001, Adam, and binary cross-entropy with logits. The best validation-loss epoch is retained for each model.
 
 ## Model Evaluation
-The test set is held apart from fitting and model selection. The notebook reports accuracy, precision, recall, F1, a confusion matrix, and examples of correct and incorrect predictions where available. Results will be available after running the notebook; no metrics are claimed here before execution.
+Both models were evaluated on the same held-out test set of 157 reviews, which was not used for training or model selection:
+
+| Model | Accuracy | Precision | Recall | F1 |
+|---|---:|---:|---:|---:|
+| Original: 32 hidden units, no dropout | 0.790 | 0.781 | 0.891 | 0.832 |
+| Updated: 64 hidden units, 30% dropout | 0.803 | 0.796 | 0.891 | 0.841 |
+
+The updated model had slightly higher accuracy, precision, and F1, with the same recall. The notebook also displays class-level precision, recall, and F1, confusion matrices, and example predictions. Because this test set is small and the labels are noisy or proxy-based, these scores should be interpreted cautiously.
 
 ## Fine-Tuning or Optimization
 The baseline uses 32 hidden units without dropout. The updated model increases the hidden layer to 64 units and adds 30% dropout. The notebook compares their validation and test results and discusses whether this change helped; a change is not assumed to improve performance in advance.
@@ -49,7 +56,7 @@ The baseline uses 32 hidden units without dropout. The updated model increases t
 The notebook displays at least three held-out review texts with their expected labels, model predictions, and confidence scores.
 
 ## Results and Conclusion
-The original model achieved 79.0% held-out test accuracy, 78.1% precision, 89.1% recall, and 0.832 F1. It correctly classified 122 of the 157 test reviews. Its strongest result was identifying positive reviews, with 89.1% recall and 0.83 F1 for the positive class.
+The original model achieved 79.0% held-out test accuracy, 78.1% precision, 89.1% recall, and 0.832 F1. It correctly classified 124 of the 157 test reviews. Its strongest result was identifying positive reviews, with 89.1% recall and 0.83 F1 for the positive class.
 
 The updated model achieved 80.3% held-out test accuracy, 79.6% precision, 89.1% recall, and 0.841 F1. It correctly classified 126 of the 157 test reviews. Compared with the original model, it improved test accuracy by 1.3 percentage points and F1 by 0.009 while maintaining the same positive-class recall.
 
