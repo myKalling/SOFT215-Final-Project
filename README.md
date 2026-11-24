@@ -50,7 +50,9 @@ Both models were evaluated on the same held-out test set of 157 reviews, which w
 The updated model had slightly higher accuracy, precision, and F1, with the same recall. The notebook also displays class-level precision, recall, and F1, confusion matrices, and example predictions. Because this test set is small and the labels are noisy or proxy-based, these scores should be interpreted cautiously.
 
 ## Fine-Tuning or Optimization
-The baseline uses 32 hidden units without dropout. The updated model increases the hidden layer to 64 units and adds 30% dropout. The notebook compares their validation and test results and discusses whether this change helped; a change is not assumed to improve performance in advance.
+The baseline uses 32 hidden units without dropout. The updated model increases the hidden layer to 64 units and adds 30% dropout.
+
+On the held-out test set, the baseline achieved 0.790 accuracy, 0.781 precision, 0.891 recall, and 0.832 F1. The updated model achieved 0.803 accuracy, 0.796 precision, 0.891 recall, and 0.841 F1. The updated model therefore improved accuracy by 0.013 and F1 by 0.009, improved precision by 0.015, and left recall unchanged. These modest differences on this small, noisy sample do not establish that the tuned model will generalize better to other reviews.
 
 ## Example Predictions
 The notebook displays at least three held-out review texts with their expected labels, model predictions, and confidence scores.
