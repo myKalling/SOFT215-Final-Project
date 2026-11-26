@@ -47,7 +47,7 @@ Both models were evaluated on the same held-out test set of 157 reviews, which w
 | Original: 32 hidden units, no dropout | 0.790 | 0.781 | 0.891 | 0.832 |
 | Updated: 64 hidden units, 30% dropout | 0.803 | 0.796 | 0.891 | 0.841 |
 
-The updated model had slightly higher accuracy, precision, and F1, with the same recall. The notebook also displays class-level precision, recall, and F1, confusion matrices, and example predictions. Because this test set is small and the labels are noisy or proxy-based, these scores should be interpreted cautiously.
+The updated model had slightly higher accuracy, precision, and F1, with the same recall. The notebook also displays class-level precision, recall, and F1, a confusion matrix for the updated model, and example predictions. Because this test set is small and the labels are noisy or proxy-based, these scores should be interpreted cautiously.
 
 ## Fine-Tuning or Optimization
 The baseline uses 32 hidden units without dropout. The updated model increases the hidden layer to 64 units and adds 30% dropout.
@@ -55,7 +55,15 @@ The baseline uses 32 hidden units without dropout. The updated model increases t
 On the held-out test set, the baseline achieved 0.790 accuracy, 0.781 precision, 0.891 recall, and 0.832 F1. The updated model achieved 0.803 accuracy, 0.796 precision, 0.891 recall, and 0.841 F1. The updated model therefore improved accuracy by 0.013 and F1 by 0.009, improved precision by 0.015, and left recall unchanged. These modest differences on this small, noisy sample do not establish that the tuned model will generalize better to other reviews.
 
 ## Example Predictions
-The notebook displays at least three held-out review texts with their expected labels, model predictions, and confidence scores.
+The following are examples from the updated model's held-out test predictions. The review text is abbreviated; the notebook displays the full examples and their estimated positive probabilities.
+
+| Review excerpt | Expected label | Prediction |
+|---|---|---|
+| "This hopefully marks a clear intent to remake all DQ upto 8 ..." | Positive | Negative |
+| "its really fun and plus its free" | Positive | Positive |
+| "Usually simple coop games like this offers only less than 10 hours playtime ..." | Positive | Positive |
+
+The first example was misclassified; the other two were correctly identified as positive.
 
 ## Results and Conclusion
 The original model achieved 79.0% held-out test accuracy, 78.1% precision, 89.1% recall, and 0.832 F1. It correctly classified 124 of the 157 test reviews. Its strongest result was identifying positive reviews, with 89.1% recall and 0.83 F1 for the positive class.
